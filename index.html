@@ -1,0 +1,2281 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VELVET BREW | វែលវេត ប្រ៊ូវ - ភេសជ្ជៈទំនើប និងកាហ្វេពិសេស</title>
+  <!-- Google Fonts សម្រាប់អក្សរខ្មែរ និងឡាតាំង -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Moul&display=swap" rel="stylesheet">
+  <!-- RemixIcon សម្រាប់ Icons ស្អាតៗ -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <style>
+    /* ================= CSS VARIABLES & RESET ================= */
+    :root {
+      --bg-cream: #FCF8F3;
+      --bg-blush: #F3E5D8;
+      --bg-white: #FFFFFF;
+      --accent: #B86B35;       /* ពណ៌កាហ្វេ Caramel ទំនើប */
+      --accent-dark: #8C4A1E;
+      --accent-light: #E6B894;
+      --matcha: #5B7A4B;
+      --text-dark: #261A12;
+      --text-muted: #6E5D52;
+      --border-soft: rgba(184, 107, 53, 0.22);
+      --shadow-soft: 0 15px 35px rgba(38, 26, 18, 0.07);
+      --shadow-hover: 0 22px 45px rgba(184, 107, 53, 0.22);
+      --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'KD Jayavarman I', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    h1, h2, .moul-font {
+      font-family: 'KD Jayavarman I', serif;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .brand-en {
+      font-family: 'KD Jayavarman I', serif;
+      letter-spacing: 2px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: 'KD Jayavarman I', sans-serif;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ================= ANIMATIONS ================= */
+    @keyframes pageFadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes floatSlow {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-14px) rotate(1.5deg);
+      }
+    }
+
+    @keyframes floatReverse {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(12px);
+      }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(184, 107, 53, 0.35);
+      }
+      50% {
+        box-shadow: 0 0 0 18px rgba(184, 107, 53, 0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s ease-out;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ================= NAVBAR ================= */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(247, 250, 251, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-soft);
+      transition: var(--transition);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .logo-icon {
+      width: 46px;
+      height: 46px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 14px rgba(184, 107, 53, 0.38);
+    }
+
+    .logo-text h3 {
+      font-size: 1.35rem;
+      color: var(--text-dark);
+      line-height: 1.1;
+    }
+
+    .logo-text span {
+      font-size: 0.78rem;
+      color: var(--accent-dark);
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links li a {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      position: relative;
+      padding: 6px 0;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-links li a i {
+      color: var(--accent);
+      font-size: 1.05rem;
+    }
+
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: var(--transition);
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color: var(--accent-dark);
+    }
+
+    .nav-links li a:hover::after,
+    .nav-links li a.active::after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      color: var(--text-dark);
+    }
+
+    /* ================= BUTTONS ================= */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(184, 107, 53, 0.3);
+      transition: var(--transition);
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transform: skewX(-25deg);
+      transition: 0.6s;
+    }
+
+    .btn-primary:hover::before {
+      left: 140%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(184, 107, 53, 0.45);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--text-dark);
+      border: 1.5px solid var(--accent);
+      padding: 12px 26px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      transition: var(--transition);
+    }
+
+    .btn-outline:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    /* ================= BACK BUTTON BAR ================= */
+    .subpage-topbar {
+      padding: 24px 0 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed var(--border-soft);
+      margin-bottom: 35px;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-white);
+      color: var(--text-dark);
+      border: 1px solid var(--border-soft);
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      transition: var(--transition);
+    }
+
+    .btn-back:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: translateX(-5px);
+    }
+
+    .breadcrumb {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .breadcrumb span {
+      color: var(--accent-dark);
+      font-weight: 700;
+    }
+
+    /* ================= PAGE SECTIONS SYSTEM ================= */
+    .page-section {
+      display: none;
+      animation: pageFadeSlide 0.55s ease forwards;
+      min-height: calc(100vh - 160px);
+      padding-bottom: 70px;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    /* ================= HERO SECTION ================= */
+    .hero {
+      padding: 55px 0 70px;
+      background: radial-gradient(circle at 85% 20%, rgba(184, 107, 53, 0.14), transparent 50%),
+                  radial-gradient(circle at 10% 80%, rgba(243, 229, 216, 0.95), transparent 50%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-blush);
+      color: var(--accent-dark);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      border: 1px solid var(--border-soft);
+    }
+
+    .hero-content h1 {
+      font-size: 2.2rem;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+    }
+
+    .hero-content h1 span {
+      color: var(--accent);
+    }
+
+    .hero-content p {
+      font-size: 1.06rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      max-width: 540px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* Hero Real Drink Showcase */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 430px;
+    }
+
+    .hero-photo-frame {
+      width: 340px;
+      height: 390px;
+      border-radius: 32px;
+      overflow: hidden;
+      border: 6px solid #fff;
+      box-shadow: 0 25px 50px rgba(38, 26, 18, 0.18);
+      animation: floatSlow 5.5s ease-in-out infinite, pulseGlow 4s infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .floating-card {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      padding: 12px 18px;
+      border-radius: 16px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border-soft);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 3;
+    }
+
+    .card-top-left {
+      top: 24px;
+      left: 0;
+      animation: floatReverse 4.5s ease-in-out infinite;
+    }
+
+    .card-bottom-right {
+      bottom: 28px;
+      right: 0;
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+
+    .floating-card i {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg-blush);
+      color: var(--accent-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+    }
+
+    /* ================= MODERN DRINK SLIDER ================= */
+    .slider-section {
+      padding: 55px 0 30px;
+      position: relative;
+    }
+
+    .slider-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .slider-title-group span {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.92rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .slider-title-group h2 {
+      font-size: 1.7rem;
+      color: var(--text-dark);
+    }
+
+    .slider-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slider-arrow {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--bg-white);
+      color: var(--text-dark);
+      border: 1px solid var(--border-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      box-shadow: 0 6px 16px rgba(38, 26, 18, 0.06);
+      transition: var(--transition);
+    }
+
+    .slider-arrow:hover {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff;
+      transform: scale(1.08);
+      box-shadow: 0 10px 22px rgba(184, 107, 53, 0.35);
+    }
+
+    .slider-viewport {
+      overflow: hidden;
+      padding: 12px 4px 24px;
+      position: relative;
+    }
+
+    .slider-track {
+      display: flex;
+      gap: 24px;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .slide-card {
+      flex: 0 0 calc(25% - 18px);
+      min-width: 265px;
+      background: var(--bg-white);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .slide-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent);
+    }
+
+    /* Real Photo Container for Drinks */
+    .slide-photo-box {
+      height: 225px;
+      width: 100%;
+      background: var(--bg-blush);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.65s cubic-bezier(0.25, 0.8, 0.25, 1);
+      display: block;
+    }
+
+    .slide-card:hover .slide-photo-box img {
+      transform: scale(1.1);
+    }
+
+    .badge-pill {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(6px);
+      color: var(--accent-dark);
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      z-index: 3;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .badge-hot {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: linear-gradient(135deg, #E0533C, #B8331E);
+      color: #fff;
+      padding: 4px 11px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      z-index: 3;
+      box-shadow: 0 4px 10px rgba(224, 83, 60, 0.3);
+    }
+
+    .slide-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .slide-body h3 {
+      font-size: 1.08rem;
+      margin-bottom: 6px;
+      color: var(--text-dark);
+    }
+
+    .slide-body p {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      line-height: 1.55;
+    }
+
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .price-tag {
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+    }
+
+    .btn-order-sm {
+      background: var(--bg-blush);
+      color: var(--accent-dark);
+      padding: 7px 15px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.84rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .btn-order-sm:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50px;
+      background: rgba(184, 107, 53, 0.28);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .dot.active {
+      width: 28px;
+      background: var(--accent);
+    }
+
+    /* ================= CATEGORY CARDS ================= */
+    .section-header {
+      text-align: center;
+      margin-bottom: 42px;
+    }
+
+    .section-header span {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.92rem;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .section-header h2 {
+      font-size: 1.75rem;
+      color: var(--text-dark);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 20px;
+    }
+
+    .cat-card {
+      background: var(--bg-white);
+      border-radius: 24px;
+      padding: 36px 28px;
+      text-align: center;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .cat-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent);
+    }
+
+    .cat-icon {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: var(--bg-blush);
+      color: var(--accent-dark);
+      font-size: 1.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .cat-card:hover .cat-icon {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff;
+      transform: rotateY(360deg);
+    }
+
+    .cat-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .cat-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .cat-link {
+      color: var(--accent-dark);
+      font-weight: 700;
+      font-size: 0.92rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ================= FILTER TABS ================= */
+    .products-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 30px;
+      background: var(--bg-white);
+      padding: 16px 22px;
+      border-radius: 20px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-btn {
+      padding: 9px 20px;
+      border-radius: 50px;
+      background: var(--bg-cream);
+      color: var(--text-dark);
+      border: 1px solid var(--border-soft);
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: var(--transition);
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .product-count-badge {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      background: var(--bg-blush);
+      padding: 6px 16px;
+      border-radius: 50px;
+    }
+
+    /* ================= ABOUT PAGE ================= */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 45px;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+
+    .about-banner {
+      background: linear-gradient(135deg, #EAD1BD, #D5A884);
+      border-radius: 26px;
+      padding: 45px;
+      color: var(--text-dark);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .stat-box {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 16px;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .stat-box h4 {
+      font-size: 1.5rem;
+      color: var(--accent-dark);
+      font-weight: 700;
+    }
+
+    .stat-box span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .value-item {
+      background: var(--bg-white);
+      padding: 28px;
+      border-radius: 20px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .value-item i {
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    /* ================= CONTACT PAGE & DIRECT SOCIAL LINKS ================= */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .info-card {
+      background: var(--bg-white);
+      padding: 32px;
+      border-radius: 24px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 24px;
+    }
+
+    .info-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 18px;
+      color: var(--accent-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .phone-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .phone-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-cream);
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border-soft);
+    }
+
+    .phone-info strong {
+      display: block;
+      font-size: 1.05rem;
+      color: var(--text-dark);
+    }
+
+    .phone-info span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .phone-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-white);
+      color: var(--accent-dark);
+      border: 1px solid var(--border-soft);
+      transition: var(--transition);
+    }
+
+    .icon-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .map-container {
+      width: 100%;
+      height: 230px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+      margin-top: 15px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .social-contact-box {
+      background: var(--bg-white);
+      padding: 36px;
+      border-radius: 24px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .selected-product-banner {
+      display: none;
+      background: var(--bg-blush);
+      border: 1px solid var(--accent);
+      padding: 12px 16px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      font-size: 0.92rem;
+      color: var(--text-dark);
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .selected-product-banner.active {
+      display: flex;
+    }
+
+    .social-cards-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .social-card-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px;
+      border-radius: 18px;
+      color: #fff;
+      transition: var(--transition);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-card-btn:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.16);
+    }
+
+    .social-telegram {
+      background: linear-gradient(135deg,  #5b99ea, #0D5EC9);
+    }
+
+    .social-facebook {
+      background: linear-gradient(135deg, #1877F2, #0D5EC9);
+    }
+
+    .social-instagram {
+      background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF);
+    }
+
+    .social-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .social-icon-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.65rem;
+    }
+
+    .social-text h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .social-text span {
+      font-size: 0.85rem;
+      opacity: 0.92;
+      display: block;
+    }
+
+    .social-arrow {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      transition: var(--transition);
+    }
+
+    .social-card-btn:hover .social-arrow {
+      transform: translateX(4px);
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    /* ================= TOAST ================= */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--text-dark);
+      color: #fff;
+      padding: 14px 24px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 2000;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast i {
+      color: var(--accent-light);
+    }
+
+    /* ================= FOOTER ================= */
+    footer {
+      background: #21160F;
+      color: #E6DDD6;
+      padding: 45px 0 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 35px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-col h4 {
+      color: var(--accent-light);
+      margin-bottom: 14px;
+      font-size: 1.1rem;
+    }
+
+    .footer-col p, .footer-col li {
+      font-size: 0.92rem;
+      color: #C7B9AE;
+      margin-bottom: 8px;
+      list-style: none;
+    }
+
+    .footer-col a:hover {
+      color: var(--accent-light);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .footer-socials a {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      transition: var(--transition);
+    }
+
+    .footer-socials a:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      font-size: 0.85rem;
+      color: #9E8E82;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 1100px) {
+      .slide-card {
+        flex: 0 0 calc(33.333% - 16px);
+      }
+    }
+
+    @media (max-width: 968px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-grid,
+      .values-grid,
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .slide-card {
+        flex: 0 0 calc(50% - 12px);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: var(--bg-cream);
+        flex-direction: column;
+        padding: 24px;
+        gap: 18px;
+        border-bottom: 1px solid var(--border-soft);
+        display: none;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hero-content h1 {
+        font-size: 1.75rem;
+      }
+
+      .category-grid,
+      .values-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .slide-card {
+        flex: 0 0 100%;
+      }
+
+      /* ================= CSS សម្រាប់ប្រអប់រូបថតម្ចាស់ហាង ================= */
+.owner-profile-card {
+  margin-top: 55px;
+  background: var(--bg-white);
+  border-radius: 26px;
+  padding: 40px;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.owner-profile-card:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent);
+}
+
+.owner-photo-wrapper {
+  position: relative;
+  width: 260px;
+  height: 290px;
+  margin: 0 auto;
+}
+
+.owner-photo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+  border: 5px solid var(--bg-blush);
+  box-shadow: 0 15px 30px rgba(38, 26, 18, 0.14);
+  transition: var(--transition);
+}
+
+.owner-profile-card:hover .owner-photo-wrapper img {
+  transform: scale(1.03);
+}
+
+.owner-badge {
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 6px 15px rgba(184, 107, 53, 0.35);
+}
+
+.owner-subtitle {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.owner-info h3 {
+  font-size: 1.55rem;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.owner-role {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--accent-dark);
+  margin-bottom: 16px;
+}
+
+.owner-quote {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-style: italic;
+  background: var(--bg-cream);
+  padding: 18px 22px;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 16px 16px 0;
+  margin-bottom: 16px;
+}
+
+.owner-signature {
+  font-weight: 700;
+  color: var(--accent-dark);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 820px) {
+  .owner-profile-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 30px 22px;
+  }
+  .owner-quote {
+    border-left: none;
+    border-top: 3px solid var(--accent);
+    border-radius: 16px;
+  }
+  .owner-signature {
+    justify-content: center;
+  }
+}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= HEADER / NAVIGATION ================= -->
+  <header>
+    <div class="container nav-wrapper">
+      <div class="logo" onclick="navigateTo('home')">
+        <!-- 1. Logo កែវកាហ្វេដើម -->
+        
+        <div class="logo-icon"><i class="ri-cup-fill"></i></div>
+
+        
+        <div class="logo-text">
+          
+          <h3 class="brand-en">VELVET BREW</h3>
+          <span>វែលវេត ប្រ៊ូវ • ភេសជ្ជៈទំនើប និងកាហ្វេ</span>
+          <span><B>PHAT CHAMNAN  ផាត​ចំណាន</B></span>
+        </div>
+        <!-- 2. រូបថតម្ចាស់ហាងរាងមូលក្រឡង់ (បន្ថែមថ្មីនៅក្បែរ Logo) -->
+        
+      </div>
+
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="បើកម៉ឺនុយ">
+        <i class="ri-menu-3-line"></i>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" data-page="home" class="active" onclick="handleNavClick(event, 'home')"><i class="ri-home-smile-line"></i> ទំព័រដើម</a></li>
+        <li><a href="#about" data-page="about" onclick="handleNavClick(event, 'about')"><i class="ri-store-2-line"></i> អំពីហាងយើង</a></li>
+        <li><a href="#products" data-page="products" onclick="handleNavClick(event, 'products')"><i class="ri-goblet-line"></i> ម៉ឺនុយភេសជ្ជៈ (១៦)</a></li>
+        <li><a href="#contact" data-page="contact" onclick="handleNavClick(event, 'contact')"><i class="ri-map-pin-user-line"></i> ទីតាំង និងទំនាក់ទំនង</a></li>
+       
+      </ul>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main>
+
+    <!-- 1. ទំព័រដើម (HOME PAGE) -->
+    <section id="page-home" class="page-section active">
+      <div class="hero">
+
+        <!-- ================= កូដបន្ថែម៖ ផ្នែកបង្ហាញរូបថតម្ចាស់ហាង ================= -->
+
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <i class="ri-fire-fill"></i> ភេសជ្ជៈថ្មីៗកំពុងល្បី • រសជាតិឆ្ងាញ់ប្លែកមាត់
+            </div>
+            <h1>ស្រស់ស្រាយគ្រប់កែវជាមួយ <span>ភេសជ្ជៈទំនើប និងកាហ្វេ</span> ពិសេស</h1>
+            <p>
+              ហាង <strong>វែលវេត ប្រ៊ូវ (VELVET BREW)</strong> នាំមកជូនលោកអ្នកនូវភេសជ្ជៈថ្មីៗដែលកំពុងពេញនិយមបំផុត ដូចជា Strawberry Matcha Latte, Brown Sugar Boba, Dalgona Coffee និងភេសជ្ជៈផ្លែឈើស្រស់ ១០០%។
+            </p>
+            <div class="hero-buttons">
+              <button class="btn-primary" onclick="navigateTo('products')">
+                មើលស្លាយភេសជ្ជៈទាំង ១៦ មុខ <i class="ri-arrow-right-line"></i>
+              </button>
+              <button class="btn-outline" onclick="navigateTo('about')">
+                <i class="ri-information-line"></i> ស្វែងយល់អំពីហាងយើង
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-photo-frame">
+              <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=85" alt="ភេសជ្ជៈពិសេស VELVET BREW">
+            </div>
+
+            <div class="floating-card card-top-left">
+              <i class="ri-leaf-fill"></i>
+              <div>
+                <strong>ផ្លែឈើ និងតែធម្មជាតិ</strong>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">ឆុងថ្មីៗគ្រប់កែវ</div>
+              </div>
+            </div>
+
+            <div class="floating-card card-bottom-right">
+              <i class="ri-star-smile-fill"></i>
+              <div>
+                <strong>ពេញនិយមបំផុត</strong>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">រសជាតិស្តង់ដារអន្តរជាតិ</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ស្លាយភេសជ្ជៈលក់ដាច់ប្រចាំហាង (HOME FEATURED SLIDER) -->
+      <div class="container slider-section reveal">
+        <div class="slider-header-bar">
+          <div class="slider-title-group">
+            <span><i class="ri-fire-fill"></i> ស្លាយភេសជ្ជៈកំពុងល្បី</span>
+            <h2>ភេសជ្ជៈលក់ដាច់ និងពេញនិយមបំផុត</h2>
+          </div>
+          <div class="slider-controls">
+            <button class="slider-arrow" onclick="moveSlider('homeSlider', -1)" aria-label="ស្លាយមុន"><i class="ri-arrow-left-s-line"></i></button>
+            <button class="slider-arrow" onclick="moveSlider('homeSlider', 1)" aria-label="ស្លាយបន្ទាប់"><i class="ri-arrow-right-s-line"></i></button>
+          </div>
+        </div>
+
+        <div class="slider-viewport" id="homeSliderViewport">
+          <div class="slider-track" id="homeSliderTrack"></div>
+        </div>
+        <div class="slider-dots" id="homeSliderDots"></div>
+      </div>
+
+      <!-- ប្រភេទភេសជ្ជៈសំខាន់ៗ -->
+      <div class="container" style="padding-top: 45px;">
+        <div class="section-header reveal">
+          <span>ជម្រើសសម្បូរបែប</span>
+          <h2>ប្រភេទភេសជ្ជៈរបស់យើង</h2>
+        </div>
+
+        <div class="category-grid">
+          <div class="cat-card reveal" onclick="openProductCategory('coffee')">
+            <div class="cat-icon"><i class="ri-cup-fill"></i></div>
+            <h3>កាហ្វេពិសេស (Specialty Coffee)</h3>
+            <p>គ្រាប់កាហ្វេលីងថ្មីៗឈ្ងុយឆ្ងាញ់ ដូចជា Caramel Macchiato, Dalgona និង Dirty Coffee។</p>
+            <span class="cat-link">ចូលមើលស្លាយកាហ្វេ <i class="ri-arrow-right-s-line"></i></span>
+          </div>
+
+          <div class="cat-card reveal" onclick="openProductCategory('milktea')">
+            <div class="cat-icon"><i class="ri-goblet-fill"></i></div>
+            <h3>តែគុជ និងម៉ាត់ឆា (Matcha & Boba)</h3>
+            <p>តែម៉ាត់ឆាជប៉ុនសុទ្ធលាយស្ត្របឺរី តែគុជស្ករត្នោត និងតែផ្លែឈើស្រស់ត្រជាក់ចិត្ត។</p>
+            <span class="cat-link">ចូលមើលស្លាយតែ <i class="ri-arrow-right-s-line"></i></span>
+          </div>
+
+          <div class="cat-card reveal" onclick="openProductCategory('smoothie')">
+            <div class="cat-icon"><i class="ri-drinks-2-fill"></i></div>
+            <h3>ភេសជ្ជៈផ្លែឈើ & សូដា (Frappe & Soda)</h3>
+            <p>ទឹកក្រឡុកផ្លែឈើស្រស់ ស្វាយទុំដូងក្រអូប និងសូដាផ្លែឈើស្រស់ស្រាយបំបាត់ភាពនឿយហត់។</p>
+            <span class="cat-link">ចូលមើលស្លាយផ្លែឈើ <i class="ri-arrow-right-s-line"></i></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ទំព័រអំពីហាងយើង (ABOUT PAGE) -->
+    <section id="page-about" class="page-section">
+      <div class="container">
+        <div class="subpage-topbar">
+          <button class="btn-back" onclick="goBack()">
+            <i class="ri-arrow-left-line"></i> ត្រលប់ក្រោយ
+          </button>
+          <div class="breadcrumb">ទំព័រដើម / <span>អំពីហាងយើង</span></div>
+        </div>
+
+        <div class="section-header">
+          <span>ប្រវត្តិ និងគុណភាព</span>
+          <h2>អំពីហាងភេសជ្ជៈ វែលវេត ប្រ៊ូវ (VELVET BREW)</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-banner">
+            <h3>រសជាតិភេសជ្ជៈទំនើប និងភាពច្នៃប្រឌិតថ្មី</h3>
+            <p>
+              <strong>វែលវេត ប្រ៊ូវ</strong> ត្រូវបានបង្កើតឡើងដោយក្តីស្រឡាញ់ចំពោះសិល្បៈនៃការឆុងកាហ្វេ និងភេសជ្ជៈទំនើប។ យើងតែងតែបង្កើតរូបមន្តភេសជ្ជៈថ្មីៗដែលកំពុងពេញនិយម ដើម្បីផ្តល់បទពិសោធន៍រសជាតិដ៏អស្ចារ្យជូនអតិថិជន។
+            </p>
+            <div class="stats-row">
+              <div class="stat-box">
+                <h4>៥+ ឆ្នាំ</h4>
+                <span>បទពិសោធន៍</span>
+              </div>
+              <div class="stat-box">
+                <h4>១៦+ មុខ</h4>
+                <span>ភេសជ្ជៈពិសេស</span>
+              </div>
+              <div class="stat-box">
+                <h4>២៥,០០០+</h4>
+                <span>អតិថិជនគាំទ្រ</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 style="font-size: 1.35rem; margin-bottom: 14px;">បេសកកម្មរបស់យើង</h3>
+            <p style="color: var(--text-muted); margin-bottom: 16px;">
+              យើងជ្រើសរើសយ៉ាងសម្រិតសម្រាំងនូវគ្រាប់កាហ្វេអារ៉ាប៊ីកា ម្សៅតែម៉ាត់ឆានាំចូលពីប្រទេសជប៉ុន ទឹកដោះគោស្រស់ និងផ្លែឈើធម្មជាតិស្រស់ៗ ដើម្បីធានាថាភេសជ្ជៈគ្រប់កែវមានរសជាតិឈ្ងុយឆ្ងាញ់ និងល្អចំពោះសុខភាព។
+            </p>
+            <p style="color: var(--text-muted); margin-bottom: 24px;">
+              យើងក៏មានសេវាកម្មដឹកជញ្ជូនរហ័សទាន់ចិត្ត និងទទួលរៀបចំភេសជ្ជៈសម្រាប់កម្មវិធីជប់លៀង ឬកិច្ចប្រជុំផ្សេងៗផងដែរ។
+            </p>
+            <button class="btn-primary" onclick="navigateTo('contact')">
+              កុម្ម៉ង់ភេសជ្ជៈឥឡូវនេះ <i class="ri-chat-smile-3-fill"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="values-grid">
+          <div class="value-item">
+            <i class="ri-leaf-fill"></i>
+            <h3>គ្រឿងផ្សំស្រស់ និងស្អាត</h3>
+            <p style="font-size: 0.92rem; color: var(--text-muted); margin-top: 8px;">
+              ប្រើប្រាស់ផ្លែឈើស្រស់ ទឹកដោះគោគុណភាពខ្ពស់ និងតែធម្មជាតិ ១០០% គ្មានសារធាតុរក្សាទុកយូរ។
+            </p>
+          </div>
+          <div class="value-item">
+            <i class="ri-sparkling-2-fill"></i>
+            <h3>រូបមន្តថ្មីៗទាន់សម័យ</h3>
+            <p style="font-size: 0.92rem; color: var(--text-muted); margin-top: 8px;">
+              តែងតែច្នៃប្រឌិតភេសជ្ជៈថ្មីៗដែលកំពុងល្បីល្បាញ ទាំងរសជាតិ និងការតុបតែងយ៉ាងទាក់ទាញ។
+            </p>
+          </div>
+          <div class="value-item">
+            <i class="ri-e-bike-2-fill"></i>
+            <h3>ដឹកជញ្ជូនរហ័សរក្សាភាពត្រជាក់</h3>
+            <p style="font-size: 0.92rem; color: var(--text-muted); margin-top: 8px;">
+              វេចខ្ចប់យ៉ាងយកចិត្តទុកដាក់ ធានាមិនកំពប់ និងរក្សារសជាតិឆ្ងាញ់ដូចញ៉ាំនៅហាងផ្ទាល់។
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. ទំព័រម៉ឺនុយភេសជ្ជៈ (PRODUCTS PAGE - MODERN SLIDER 16 ITEMS WITH REAL PHOTOS) -->
+    <section id="page-products" class="page-section">
+      <div class="container">
+        <div class="subpage-topbar">
+          <button class="btn-back" onclick="goBack()">
+            <i class="ri-arrow-left-line"></i> ត្រលប់ក្រោយ
+          </button>
+          <div class="breadcrumb">ទំព័រដើម / <span>ម៉ឺនុយភេសជ្ជៈទាំងអស់</span></div>
+        </div>
+
+        <div class="section-header">
+          <span>ស្លាយម៉ឺនុយភេសជ្ជៈថ្មីៗ</span>
+          <h2>ភេសជ្ជៈកំពុងល្បីទាំង ១៦ មុខ</h2>
+        </div>
+
+        <div class="products-toolbar">
+          <div class="filter-tabs">
+            <button class="filter-btn active" data-filter="all" onclick="filterProducts('all')">
+              <i class="ri-apps-2-line"></i> ទាំងអស់ (១៦)
+            </button>
+            <button class="filter-btn" data-filter="coffee" onclick="filterProducts('coffee')">
+              <i class="ri-cup-line"></i> កាហ្វេពិសេស (៦)
+            </button>
+            <button class="filter-btn" data-filter="milktea" onclick="filterProducts('milktea')">
+              <i class="ri-goblet-line"></i> តែគុជ & ម៉ាត់ឆា (៥)
+            </button>
+            <button class="filter-btn" data-filter="smoothie" onclick="filterProducts('smoothie')">
+              <i class="ri-drinks-2-line"></i> ផ្លែឈើ & សូដា (៥)
+            </button>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span class="product-count-badge" id="productCountBadge">បង្ហាញ ១៦ មុខ</span>
+            <div class="slider-controls">
+              <button class="slider-arrow" onclick="moveSlider('productSlider', -1)" title="ស្លាយមុន"><i class="ri-arrow-left-s-line"></i></button>
+              <button class="slider-arrow" onclick="moveSlider('productSlider', 1)" title="ស្លាយបន្ទាប់"><i class="ri-arrow-right-s-line"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-viewport" id="productSliderViewport">
+          <div class="slider-track" id="productSliderTrack"></div>
+        </div>
+        <div class="slider-dots" id="productSliderDots"></div>
+
+        <p style="text-align: center; font-size: 0.88rem; color: var(--text-muted); margin-top: 18px;">
+          <i class="ri-drag-move-2-line"></i> គន្លឹះ៖ លោកអ្នកអាចចុចព្រួញឆ្វេង-ស្តាំ ឬអូសស្លាយដើម្បីមើលភេសជ្ជៈបន្ថែម
+        </p>
+      </div>
+    </section>
+
+    <!-- 4. ទំព័រទីតាំង និងទំនាក់ទំនង (LOCATION & DIRECT SOCIAL CONTACT PAGE) -->
+    <section id="page-contact" class="page-section">
+      <div class="container">
+        <div class="subpage-topbar">
+          <button class="btn-back" onclick="goBack()">
+            <i class="ri-arrow-left-line"></i> ត្រលប់ក្រោយ
+          </button>
+          <div class="breadcrumb">ទំព័រដើម / <span>ទីតាំង និងទំនាក់ទំនង</span></div>
+        </div>
+
+        <div class="section-header">
+          <span>ទំនាក់ទំនងមកកាន់យើង</span>
+          <h2>ទីតាំងហាង និងបណ្តាញសង្គមកុម្ម៉ង់ផ្ទាល់</h2>
+        </div>
+
+        <div class="contact-grid">
+          <div>
+            <div class="info-card">
+              <h3><i class="ri-phone-fill"></i> លេខទូរសព្ទទំនាក់ទំនងផ្ទាល់</h3>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">
+                អតិថិជនអាចចុចហៅចេញ ឬចុចចម្លងលេខទូរសព្ទខាងក្រោមដើម្បីកុម្ម៉ង់ភេសជ្ជៈ៖
+              </p>
+
+              <div class="phone-list">
+                <div class="phone-item">
+                  <div class="phone-info">
+                    <strong>017 417 900</strong>
+                    <span>ប្រព័ន្ធ Cellcard (ផ្នែកទទួលការកុម្ម៉ង់)</span>
+                  </div>
+                  <div class="phone-actions">
+                    <a href="tel:017 417 900" class="icon-btn" title="ហៅចេញ"><i class="ri-phone-line"></i></a>
+                    <button class="icon-btn" onclick="copyText('017 417 900')" title="ចម្លងលេខ"><i class="ri-file-copy-line"></i></button>
+                  </div>
+                </div>
+
+                <div class="phone-item">
+                  <div class="phone-info">
+                    <strong>017 417 900</strong>
+                    <span>ប្រព័ន្ធ Smart / Telegram</span>
+                  </div>
+                  <div class="phone-actions">
+                    <a href="tel:017 417 900" class="icon-btn" title="ហៅចេញ"><i class="ri-phone-line"></i></a>
+                    <button class="icon-btn" onclick="copyText('017 417 900')" title="ចម្លងលេខ"><i class="ri-file-copy-line"></i></button>
+                  </div>
+                </div>
+
+                <div class="phone-item">
+                  <div class="phone-info">
+                    <strong>017 417 900</strong>
+                    <span>ប្រព័ន្ធ Metfone (ផ្នែកដឹកជញ្ជូន)</span>
+                  </div>
+                  <div class="phone-actions">
+                    <a href="tel:017 417 900" class="icon-btn" title="ហៅចេញ"><i class="ri-phone-line"></i></a>
+                    <button class="icon-btn" onclick="copyText('017 417 900')" title="ចម្លងលេខ"><i class="ri-file-copy-line"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="ri-map-pin-2-fill"></i> អាសយដ្ឋាន និងទីតាំងហាង</h3>
+              <p style="font-size: 0.95rem; margin-bottom: 6px;">
+                <strong>អាសយដ្ឋាន៖</strong> ផ្ទះលេខ ១៦៨ មហាវិថីព្រះមុនីវង្ស សង្កាត់បឹងកេងកង១ ខណ្ឌបឹងកេងកង រាជធានីភ្នំពេញ។
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-muted);">
+                <strong>ម៉ោងបើកលក់៖</strong> ចន្ទ - អាទិត្យ (ម៉ោង ៧:០០ ព្រឹក ដល់ ៩:០០ យប់)
+              </p>
+
+              <div class="map-container">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3908.770660331441!2d104.91821831480796!3d11.556373791795185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109513dc76a6be3%3A0x9c010ee85ab525bb!2sPhnom%20Penh!5e0!3m2!1sen!2skh!4v1680000000000!5m2!1sen!2skh"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="ផែនទីទីតាំងហាង">
+                </iframe>
+              </div>
+            </div>
+          </div>
+
+          <div class="social-contact-box">
+            <h3 style="font-size: 1.35rem; margin-bottom: 8px; color: var(--text-dark);">
+              <i class="ri-customer-service-2-fill" style="color: var(--accent);"></i> ឆាតកុម្ម៉ង់ភេសជ្ជៈផ្ទាល់
+            </h3>
+            <p style="font-size: 0.94rem; color: var(--text-muted); margin-bottom: 24px;">
+              សូមចុចលើបណ្តាញសង្គមណាមួយខាងក្រោម ដើម្បីភ្ជាប់ទំនាក់ទំនងឆាតកុម្ម៉ង់ជាមួយក្រុមការងាររបស់យើងដោយផ្ទាល់៖
+            </p>
+
+            <div class="selected-product-banner" id="selectedProductBanner">
+              <div>
+                <i class="ri-cup-fill" style="color: var(--accent-dark);"></i>
+                <span>ភេសជ្ជៈដែលបានជ្រើស៖ <strong id="selectedProductNameText"></strong></span>
+              </div>
+              <button onclick="clearSelectedProduct()" style="background:none; color: var(--text-muted); font-size: 1.1rem;" title="លុបចេញ">
+                <i class="ri-close-circle-line"></i>
+              </button>
+            </div>
+
+            <div class="social-cards-stack">
+              <a id="telegramLink" href="https://t.me/velvetbrew_kh" target="_blank" rel="noopener noreferrer" class="social-card-btn social-telegram">
+                <div class="social-left">
+                  <div class="social-icon-circle">
+                    <i class="ri-telegram-fill"></i>
+                  </div>
+                  <div class="social-text">
+                    <h4>កុម្ម៉ង់តាម Telegram</h4>
+                    <span>ឆាតកុម្ម៉ង់រហ័ស (@velvetbrew_kh)</span>
+                  </div>
+                </div>
+                <div class="social-arrow">
+                  <i class="ri-external-link-line"></i>
+                </div>
+              </a>
+
+              <a id="facebookLink" href="https://www.facebook.com/velvetbrewkh" target="_blank" rel="noopener noreferrer" class="social-card-btn social-facebook">
+                <div class="social-left">
+                  <div class="social-icon-circle">
+                    <i class="ri-facebook-circle-fill"></i>
+                  </div>
+                  <div class="social-text">
+                    <h4>ទំនាក់ទំនងតាម Facebook Page</h4>
+                    <span>ចូលមើលផេកផ្លូវការ និងផ្ញើសារតាម Messenger</span>
+                  </div>
+                </div>
+                <div class="social-arrow">
+                  <i class="ri-external-link-line"></i>
+                </div>
+              </a>
+
+              <a id="instagramLink" href="https://www.instagram.com/velvetbrewkh" target="_blank" rel="noopener noreferrer" class="social-card-btn social-instagram">
+                <div class="social-left">
+                  <div class="social-icon-circle">
+                    <i class="ri-instagram-fill"></i>
+                  </div>
+                  <div class="social-text">
+                    <h4>ទំនាក់ទំនងតាម Instagram</h4>
+                    <span>តាមដានភេសជ្ជៈថ្មីៗ និងផ្ញើសារ Direct (@velvetbrewkh)</span>
+                  </div>
+                </div>
+                <div class="social-arrow">
+                  <i class="ri-external-link-line"></i>
+                </div>
+              </a>
+            </div>
+
+            <div style="margin-top: 26px; padding: 16px; background: var(--bg-cream); border-radius: 16px; border: 1px dashed var(--accent); font-size: 0.88rem; color: var(--text-muted);">
+              <i class="ri-e-bike-2-fill" style="color: var(--accent-dark);"></i>
+              <strong>សេវាដឹកជញ្ជូនរហ័ស៖</strong> ឆុងភ្លាម ដឹកជូនភ្លាម ធានាភាពត្រជាក់ និងរសជាតិឆ្ងាញ់គ្រប់កែវ!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4 class="brand-en" style="font-size: 1.4rem;">VELVET BREW • វែលវេត ប្រ៊ូវ</h4>
+          <p>ហាងភេសជ្ជៈទំនើប កាហ្វេពិសេស តែម៉ាត់ឆា និងភេសជ្ជៈផ្លែឈើស្រស់ រសជាតិឆ្ងាញ់ប្លែកមាត់។</p>
+          <div class="footer-socials">
+            <a href="https://t.me/velvetbrew_kh" target="_blank" title="Telegram"><i class="ri-telegram-fill"></i></a>
+            <a href="https://www.facebook.com/velvetbrewkh" target="_blank" title="Facebook"><i class="ri-facebook-fill"></i></a>
+            <a href="https://www.instagram.com/velvetbrewkh" target="_blank" title="Instagram"><i class="ri-instagram-fill"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>តំណភ្ជាប់រហ័ស</h4>
+          <ul>
+            <li><a href="#home" onclick="handleNavClick(event, 'home')">ទំព័រដើម</a></li>
+            <li><a href="#about" onclick="handleNavClick(event, 'about')">អំពីហាងយើង</a></li>
+            <li><a href="#products" onclick="handleNavClick(event, 'products')">ម៉ឺនុយភេសជ្ជៈទាំង ១៦ មុខ</a></li>
+            <li><a href="#contact" onclick="handleNavClick(event, 'contact')">ទីតាំង និងទំនាក់ទំនង</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>ទំនាក់ទំនង</h4>
+          <p><i class="ri-phone-fill"></i> 012 888 999 / 010 777 666</p>
+          <p><i class="ri-map-pin-fill"></i> បឹងកេងកង១, រាជធានីភ្នំពេញ</p>
+        </div>
+      </div>
+
+      <div class="copyright">
+        &copy; 2026 VELVET BREW (វែលវេត ប្រ៊ូវ). រក្សាសិទ្ធិគ្រប់យ៉ាង។
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <i class="ri-checkbox-circle-fill"></i>
+    <span id="toastMessage">ជោគជ័យ!</span>
+  </div>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    // ================= 1. កំណត់ LINK បណ្តាញសង្គមពិតប្រាកដរបស់ហាងអ្នក =================
+    const SOCIAL_CONFIG = {
+      telegramUsername: 'velvetbrew_kh', // <-- ដាក់ Username Telegram របស់អ្នក
+      facebookUrl: 'https://www.facebook.com/velvetbrewkh', // <-- ដាក់ Link Facebook Page របស់អ្នក
+      instagramUrl: 'https://www.instagram.com/velvetbrewkh' // <-- ដាក់ Link Instagram របស់អ្នក
+    };
+
+    // ================= 2. ទិន្នន័យភេសជ្ជៈកំពុងល្បីទាំង ១៦ មុខ (ប្រើរូបភាពពិតប្រាកដ CDN) =================
+    // ចំណាំ៖ URL រូបភាពទាំងអស់មកពី Unsplash CDN ដែលដំណើរការលឿន និងមិនបាត់ពេលយកទៅ Hosting
+    const productsData = [
+      // --- កាហ្វេពិសេស (៦ មុខ) ---
+      {
+        id: 1,
+        category: 'coffee',
+        tag: 'កំពុងល្បី • កាហ្វេ',
+        hot: true,
+        image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=600&q=80',
+        name: 'Iced Caramel Macchiato',
+        desc: 'កាហ្វេអារ៉ាប៊ីកាឈ្ងុយឆ្ងាញ់ លាយទឹកដោះគោស្រស់ និងទឹកស្ករខារ៉ាមែលផ្អែមល្មម។',
+        price: '$2.75'
+      },
+      {
+        id: 2,
+        category: 'coffee',
+        tag: 'ពេញនិយម • កាហ្វេ',
+        hot: true,
+        image: 'https://images.unsplash.com/photo-1587080413959-06b859fb107d?auto=format&fit=crop&w=600&q=80',
+        name: 'Dalgona Whipped Coffee',
+        desc: 'ហ្វូមកាហ្វេក្រែមទន់រលោងពីលើទឹកដោះគោស្រស់ត្រជាក់ រសជាតិឆ្ងាញ់ប្លែកមាត់។',
+        price: '$3.00'
+      },
+      {
+        id: 3,
+        category: 'coffee',
+        tag: 'ថ្មី • កាហ្វេដូង',
+        hot: true,
+        image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=80',
+        name: 'Coconut Cream Cold Brew',
+        desc: 'កាហ្វេត្រជាក់ត្រាំ ២៤ ម៉ោង លាយជាមួយក្រែមដូងក្រអូបឈ្ងុយឆ្ងាញ់ត្រជាក់ចិត្ត។',
+        price: '$3.25'
+      },
+      {
+        id: 4,
+        category: 'coffee',
+        tag: 'កាហ្វេពិសេស',
+        hot: false,
+        image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=600&q=80',
+        name: 'Spanish Condensed Latte',
+        desc: 'កាហ្វេឡាតេរសជាតិបែបអេស្ប៉ាញ ឈ្ងុយកាហ្វេដិត ផ្អែមស្រទន់ ងាយស្រួលញ៉ាំ។',
+        price: '$2.50'
+      },
+      {
+        id: 5,
+        category: 'coffee',
+        tag: 'ថ្មី • Dirty Coffee',
+        hot: false,
+        image: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=80',
+        name: 'Velvet Dirty Espresso',
+        desc: 'អេស្ព្រេសូក្តៅៗហូរចូលទឹកដោះគោស្រស់ត្រជាក់ខ្លាំង ផ្តល់រសជាតិពីរស្រទាប់ដ៏អស្ចារ្យ។',
+        price: '$3.00'
+      },
+      {
+        id: 6,
+        category: 'coffee',
+        tag: 'កាហ្វេសូកូឡា',
+        hot: false,
+        image: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=600&q=80',
+        name: 'Iced Dark Mocha Frappe',
+        desc: 'កាហ្វេលាយសូកូឡាខ្មៅក្រឡុកជាមួយទឹកកក និងវីបក្រែមទន់រលោងពីខាងលើ។',
+        price: '$3.50'
+      },
+
+      // --- តែគុជ និងម៉ាត់ឆា (៥ មុខ) ---
+      {
+        id: 7,
+        category: 'milktea',
+        tag: 'លក់ដាច់ #១',
+        hot: true,
+        image: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=600&q=80',
+        name: 'Strawberry Matcha Latte',
+        desc: 'តែម៉ាត់ឆាជប៉ុនសុទ្ធលាយទឹកដោះគោស្រស់ និងដំណាប់ស្ត្របឺរីស្រស់ ៣ ពណ៌យ៉ាងស្រស់ស្អាត។',
+        price: '$3.50'
+      },
+      {
+        id: 8,
+        category: 'milktea',
+        tag: 'តែគុជកំពុងល្បី',
+        hot: true,
+        image: 'https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=600&q=80',
+        name: 'Brown Sugar Tiger Boba',
+        desc: 'តែទឹកដោះគោស្រស់ជាមួយគុជស្ករត្នោតស្ងោរថ្មីៗ ទន់ស្វិត ឈ្ងុយឆ្ងាញ់ជាប់ចិត្ត។',
+        price: '$2.75'
+      },
+      {
+        id: 9,
+        category: 'milktea',
+        tag: 'ថ្មី • ម៉ាត់ឆា',
+        hot: false,
+        image: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=600&q=80',
+        name: 'Uji Matcha Cheese Foam',
+        desc: 'តែម៉ាត់ឆាគុណភាពខ្ពស់ បន្ថែមហ្វូមឈីសប្រៃផ្អែមឈ្ងុយឆ្ងាញ់នៅស្រទាប់ខាងលើ។',
+        price: '$3.25'
+      },
+      {
+        id: 10,
+        category: 'milktea',
+        tag: 'តែផ្លែឈើ',
+        hot: false,
+        image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80',
+        name: 'Peach Oolong Iced Tea',
+        desc: 'តែអ៊ូឡុងក្រអូបប្រហើរលាយជាមួយផ្លែប៉េសស្រស់ ជួយបំបាត់ភាពស្រេកទឹកភ្លាមៗ។',
+        price: '$2.50'
+      },
+      {
+        id: 11,
+        category: 'milktea',
+        tag: 'ថ្មី • តែត្រាវ',
+        hot: false,
+        image: 'https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?auto=format&fit=crop&w=600&q=80',
+        name: 'Creamy Taro Milk Tea',
+        desc: 'តែទឹកដោះគោរសជាតិត្រាវក្រអូបឈ្ងុយ ពណ៌ស្វាយធម្មជាតិ ផ្អែមល្មមឆ្ងាញ់។',
+        price: '$2.75'
+      },
+
+      // --- ភេសជ្ជៈផ្លែឈើ & សូដា (៥ មុខ) ---
+      {
+        id: 12,
+        category: 'smoothie',
+        tag: 'កំពុងល្បី • ផ្លែឈើ',
+        hot: true,
+        image: 'https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?auto=format&fit=crop&w=600&q=80',
+        name: 'Mango Coconut Smoothie',
+        desc: 'ស្វាយទុំក្រឡុកជាមួយខ្ទិះដូងស្រស់ ឈ្ងុយផ្អែមត្រជាក់ចិត្ត រសជាតិពិសេសប្រចាំហាង។',
+        price: '$3.25'
+      },
+      {
+        id: 13,
+        category: 'smoothie',
+        tag: 'ស្រស់ស្រាយ • សូដា',
+        hot: true,
+        image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80',
+        name: 'Yuzu Honey Sparkling Soda',
+        desc: 'ក្រូចយូហ្ស៊ុជប៉ុនលាយទឹកឃ្មុំធម្មជាតិ និងសូដាត្រជាក់ ជូរអែមស្រស់ស្រាយពេញមួយថ្ងៃ។',
+        price: '$2.75'
+      },
+      {
+        id: 14,
+        category: 'smoothie',
+        tag: 'ថ្មី • ស្ត្របឺរី',
+        hot: false,
+        image: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=600&q=80',
+        name: 'Mixed Berry Yogurt Frappe',
+        desc: 'ផ្លែប៊ឺរីចម្រុះក្រឡុកជាមួយយ៉ាអួរស្រស់ ជំនួយសុខភាព និងរសជាតិជូរអែមឆ្ងាញ់។',
+        price: '$3.50'
+      },
+      {
+        id: 15,
+        category: 'smoothie',
+        tag: 'ផ្លែឈើស្រស់',
+        hot: false,
+        image: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=600&q=80',
+        name: 'Passion Fruit & Mint Cooler',
+        desc: 'ផ្លែផាសិនស្រស់លាយស្លឹកជីអង្កាម និងក្រូចឆ្មារ ត្រជាក់ស្រឡះបំបាត់ភាពនឿយហត់។',
+        price: '$2.50'
+      },
+      {
+        id: 16,
+        category: 'smoothie',
+        tag: 'ថ្មី • បឺរក្រឡុក',
+        hot: false,
+        image: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=600&q=80',
+        name: 'Avocado Almond Smoothie',
+        desc: 'ផ្លែបឺរស្រស់ក្រឡុកខាប់ឈ្ងុយ លាយទឹកដោះគោស្រស់ និងគ្រាប់អាល់ម៉ុនលីងស្រួយៗ។',
+        price: '$3.50'
+      }
+    ];
+
+    // ================= 3. MODERN SLIDER ENGINE =================
+    const slidersState = {
+      homeSlider: {
+        items: productsData.filter(p => p.hot),
+        currentIndex: 0,
+        trackId: 'homeSliderTrack',
+        dotsId: 'homeSliderDots',
+        viewportId: 'homeSliderViewport'
+      },
+      productSlider: {
+        items: [...productsData],
+        currentIndex: 0,
+        trackId: 'productSliderTrack',
+        dotsId: 'productSliderDots',
+        viewportId: 'productSliderViewport'
+      }
+    };
+
+    function createSlideCardHTML(product) {
+      return `
+        <div class="slide-card">
+          <div class="slide-photo-box">
+            <span class="badge-pill"><i class="ri-sparkling-fill"></i> ${product.tag}</span>
+            ${product.hot ? '<span class="badge-hot">លក់ដាច់</span>' : ''}
+            <img src="${product.image}" alt="${product.name}" loading="lazy">
+          </div>
+          <div class="slide-body">
+            <div>
+              <h3>${product.name}</h3>
+              <p>${product.desc}</p>
+            </div>
+            <div class="slide-footer">
+              <span class="price-tag">${product.price}</span>
+              <button class="btn-order-sm" onclick="orderProduct('${product.name}', '${product.price}')">
+                <i class="ri-shopping-bag-line"></i> កុម្ម៉ង់ទិញ
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function getVisibleCardsCount() {
+      const w = window.innerWidth;
+      if (w <= 680) return 1;
+      if (w <= 968) return 2;
+      if (w <= 1100) return 3;
+      return 4;
+    }
+
+    function renderSlider(sliderKey) {
+      const state = slidersState[sliderKey];
+      const track = document.getElementById(state.trackId);
+      const dotsContainer = document.getElementById(state.dotsId);
+      if (!track) return;
+
+      track.innerHTML = state.items.map(createSlideCardHTML).join('');
+      state.currentIndex = 0;
+      updateSliderPosition(sliderKey);
+
+      const visibleCount = getVisibleCardsCount();
+      const maxIndex = Math.max(0, state.items.length - visibleCount);
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i <= maxIndex; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => {
+          state.currentIndex = i;
+          updateSliderPosition(sliderKey);
+        };
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateSliderPosition(sliderKey) {
+      const state = slidersState[sliderKey];
+      const track = document.getElementById(state.trackId);
+      const dotsContainer = document.getElementById(state.dotsId);
+      if (!track || !track.children.length) return;
+
+      const visibleCount = getVisibleCardsCount();
+      const maxIndex = Math.max(0, state.items.length - visibleCount);
+
+      if (state.currentIndex > maxIndex) state.currentIndex = 0;
+      if (state.currentIndex < 0) state.currentIndex = maxIndex;
+
+      const cardWidth = track.children[0].offsetWidth;
+      const gap = 24;
+      const offset = state.currentIndex * (cardWidth + gap);
+      track.style.transform = `translateX(-${offset}px)`;
+
+      if (dotsContainer) {
+        Array.from(dotsContainer.children).forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === state.currentIndex);
+        });
+      }
+    }
+
+    function moveSlider(sliderKey, direction) {
+      const state = slidersState[sliderKey];
+      const visibleCount = getVisibleCardsCount();
+      const maxIndex = Math.max(0, state.items.length - visibleCount);
+
+      state.currentIndex += direction;
+      if (state.currentIndex > maxIndex) {
+        state.currentIndex = 0;
+      } else if (state.currentIndex < 0) {
+        state.currentIndex = maxIndex;
+      }
+      updateSliderPosition(sliderKey);
+    }
+
+    function enableTouchSwipe(sliderKey) {
+      const viewport = document.getElementById(slidersState[sliderKey].viewportId);
+      if (!viewport) return;
+      let startX = 0;
+
+      viewport.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+      }, { passive: true });
+
+      viewport.addEventListener('touchend', (e) => {
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        if (Math.abs(diff) > 45) {
+          moveSlider(sliderKey, diff > 0 ? 1 : -1);
+        }
+      });
+    }
+
+    setInterval(() => {
+      const homePage = document.getElementById('page-home');
+      if (homePage && homePage.classList.contains('active')) {
+        moveSlider('homeSlider', 1);
+      }
+    }, 4500);
+
+    // ================= 4. MULTI-PAGE, FILTER & DIRECT SOCIAL ORDER =================
+    let pageHistory = ['home'];
+
+    function navigateTo(pageId, pushToHistory = true) {
+      document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      const targetPage = document.getElementById('page-' + pageId);
+      if (targetPage) {
+        targetPage.classList.add('active');
+      }
+
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-page') === pageId) {
+          link.classList.add('active');
+        }
+      });
+
+      if (pushToHistory && pageHistory[pageHistory.length - 1] !== pageId) {
+        pageHistory.push(pageId);
+        window.history.pushState({ page: pageId }, '', '#' + pageId);
+      }
+
+      document.getElementById('navLinks').classList.remove('open');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      setTimeout(() => {
+        if (pageId === 'home') updateSliderPosition('homeSlider');
+        if (pageId === 'products') renderSlider('productSlider');
+        triggerReveal();
+      }, 60);
+    }
+
+    function handleNavClick(event, pageId) {
+      event.preventDefault();
+      navigateTo(pageId);
+    }
+
+    function goBack() {
+      if (pageHistory.length > 1) {
+        pageHistory.pop();
+        const previousPage = pageHistory[pageHistory.length - 1];
+        navigateTo(previousPage, false);
+      } else {
+        navigateTo('home', false);
+      }
+    }
+
+    window.addEventListener('popstate', (event) => {
+      if (event.state && event.state.page) {
+        navigateTo(event.state.page, false);
+      } else {
+        navigateTo('home', false);
+      }
+    });
+
+    function toggleMobileMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    function filterProducts(category) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-filter') === category) {
+          btn.classList.add('active');
+        }
+      });
+
+      const filtered = category === 'all'
+        ? [...productsData]
+        : productsData.filter(p => p.category === category);
+
+      slidersState.productSlider.items = filtered;
+      renderSlider('productSlider');
+
+      const badge = document.getElementById('productCountBadge');
+      if (badge) {
+        badge.textContent = `បង្ហាញ ${filtered.length} មុខ`;
+      }
+    }
+
+    function openProductCategory(category) {
+      navigateTo('products');
+      setTimeout(() => filterProducts(category), 80);
+    }
+
+    function orderProduct(productName, price) {
+      navigateTo('contact');
+
+      const banner = document.getElementById('selectedProductBanner');
+      const nameText = document.getElementById('selectedProductNameText');
+      const telegramLink = document.getElementById('telegramLink');
+
+      nameText.textContent = `${productName} (${price})`;
+      banner.classList.add('active');
+
+      const autoMessage = encodeURIComponent(`សួស្តី! ខ្ញុំចង់កុម្ម៉ង់ភេសជ្ជៈ៖ ${productName} (តម្លៃ ${price})`);
+      telegramLink.href = `https://t.me/${SOCIAL_CONFIG.telegramUsername}?text=${autoMessage}`;
+
+      showToast('សូមចុចលើ Telegram, Facebook ឬ Instagram ដើម្បីកុម្ម៉ង់!');
+    }
+
+    function clearSelectedProduct() {
+      const banner = document.getElementById('selectedProductBanner');
+      const telegramLink = document.getElementById('telegramLink');
+      banner.classList.remove('active');
+      telegramLink.href = `https://t.me/${SOCIAL_CONFIG.telegramUsername}`;
+    }
+
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('បានចម្លងលេខទូរសព្ទ៖ ' + text);
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMessage').textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3400);
+    }
+
+    function triggerReveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 60) {
+          el.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('load', () => {
+      document.getElementById('@hhqwwwNanfromekhmerside').href = `${SOCIAL_CONFIG.telegramUsername}`;
+      document.getElementById('https://www.facebook.com/share/19o3qssesw/?mibextid=wwXIfr').href = SOCIAL_CONFIG.facebookUrl;
+      document.getElementById('@Nanfromekhmerside').href = SOCIAL_CONFIG.instagramUrl;
+
+      renderSlider('homeSlider');
+      renderSlider('productSlider');
+      enableTouchSwipe('homeSlider');
+      enableTouchSwipe('productSlider');
+      triggerReveal();
+    });
+
+    window.addEventListener('resize', () => {
+      renderSlider('homeSlider');
+      renderSlider('productSlider');
+    });
+
+    window.addEventListener('scroll', triggerReveal);
+  </script>
+</body>
+</html>
